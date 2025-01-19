@@ -10,10 +10,22 @@
             constructor(x, y, radious) {
                 this.x = x;
                 this.y = y;
-                this.radious = radious;
-                this.speedX = 5;
-                this.speedY = 5;
+                this.radious = Math.random() * radious + 10;
+                this.speedX = Math.random() * 5 - 2.5;
+                this.speedY = Math.random() * 5 - 2.5;
+                // this.circles = [];
+                // this.#initialize();
             }
+            // #initialize() {
+            //     for (let i = 0; i < 10; i++) {
+            //         this.circles[i] = {
+            //             this.circles = new Circle();
+            //         };
+
+            //     }
+
+
+            // }
             draw(crc) {
                 crc.beginPath();
                 crc.arc(this.x, this.y, this.radious, 0, Math.PI * 2);
@@ -33,28 +45,40 @@
             }
         }
 
-        const circle = new Circle(1400, 200, 50);
-
         const fps = 1000 / 120;
         let time = 0
-        let deltaTime = 0;
         let t = 0;
 
+        let circles = [];
+
+        for (let i = 0; i < 20; i++) {
+            circles[i] = new Circle(500, 500, 20);
+        }
+
+        console.log(circles)
+
         const animate = (timeStamp) => {
-            deltaTime = timeStamp - time;
+            const deltaTime = timeStamp - time;
             time = timeStamp;
 
             if (t > fps) {
                 crc.clearRect(0, 0, canvasWidth, canvasHeight);
-                circle.update();
-                circle.draw(crc);
+                circles.forEach(circle => {
+                    circle.update();
+                    circle.draw(crc);
+                });
+
+                // circle.update();
+                // circle.draw(crc);
                 t = 0;
+            } else {
+                t += deltaTime;
             }
-            t += 1;
+
             requestAnimationFrame(animate);
         }
 
-        animate()
+        animate(0)
     }
 
     init();
