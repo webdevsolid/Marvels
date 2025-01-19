@@ -52,7 +52,7 @@
         let circles = [];
 
         for (let i = 0; i < 20; i++) {
-            circles[i] = new Circle(500, 500, 20);
+            circles[i] = new Circle(canvasWidth/2, canvasHeight/2, 20);
         }
 
         console.log(circles)
