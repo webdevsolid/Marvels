@@ -21,8 +21,8 @@
 
         class Circle {
             constructor(x, y, radious) {
-                this.radiousAcceleration = 2;
-                this.radiousMax = 50;
+                this.radiousAcceleration = 3;
+                this.radiousMax = 40;
                 this.x = Math.random() * (x - radious * 4) + radious * 2;
                 this.y = Math.random() * (y - radious * 4) + radious * 2;
                 this.radious = Math.random() * radious + this.radiousAcceleration;
@@ -82,7 +82,9 @@
             time = timeStamp;
 
             if (t > fps) {
-                crc.clearRect(0, 0, canvasWidth, canvasHeight);
+                //crc.clearRect(0, 0, canvasWidth, canvasHeight);
+                crc.fillStyle = 'rgba(0, 0, 0, 0.3';
+                crc.fillRect(0, 0, canvasWidth, canvasHeight);
 
                 circles.forEach(circle => {
                     circle.update();
